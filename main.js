@@ -82,8 +82,8 @@ function renderPost(objPost) {
 </div>
 <div class="post__footer">
     <div class="likes js-likes">
-        <div class="likes__cta">
-            <a class="like-button  js-like-button" href="#" data-postid="1">
+        <div class="likes__cta" >
+            <a  class="like-button  js-like-button" href="#!" data-postid="1">
                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                 <span class="like-button__label">Mi Piace</span>
             </a>
@@ -96,13 +96,20 @@ function renderPost(objPost) {
 
 eleContainer.append(elePost);
 };
-
+/* 
 const btnMiPiace = document.querySelector('.like-button');
 
 btnMiPiace.addEventListener('click', miPiace);
 
+
+
+
+let arrPiaciuti = [];
+
 function miPiace(objPost) {
-    btnMiPiace.classList.add('like-button--liked')
-    
-    
+    btnMiPiace.classList.add('like-button--liked');
+    objPost.likes++
+    arrPiaciuti.push(objPost.id)
 }
+
+console.log(arrPiaciuti) */
