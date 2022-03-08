@@ -58,8 +58,12 @@ const posts = [
 
 const eleContainer = document.querySelector('.posts-list');
 
+
+
 for (let i = 0; i < posts.length; i++) {
     renderPost(posts[i])
+    //miPiace(posts[i])
+    
 }
 
 function renderPost(objPost) {
@@ -94,22 +98,24 @@ function renderPost(objPost) {
     </div> 
 </div>        `
 
+
+
 eleContainer.append(elePost);
 };
-/* 
+
 const btnMiPiace = document.querySelector('.like-button');
 
 btnMiPiace.addEventListener('click', miPiace);
 
 
-
+function miPiace() {
+    btnMiPiace.classList.add('like-button--liked');
+    console.log(arrPiaciuti)
+}
 
 let arrPiaciuti = [];
 
-function miPiace(objPost) {
-    btnMiPiace.classList.add('like-button--liked');
-    objPost.likes++
-    arrPiaciuti.push(objPost.id)
+if (btnMiPiace.classList.contains('like-button--liked')) {
+    arrPiaciuti.push(.id)
 }
 
-console.log(arrPiaciuti) */
