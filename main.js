@@ -96,3 +96,13 @@ function renderPost(objPost) {
 
 eleContainer.append(elePost);
 };
+
+const btnMiPiace = document.querySelector('.like-button');
+
+btnMiPiace.addEventListener('click', miPiace);
+
+function miPiace(objPost) {
+    btnMiPiace.classList.add('like-button--liked')
+    
+    
+}
