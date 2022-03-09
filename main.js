@@ -1,3 +1,4 @@
+const arrLikedIds = [];
 const posts = [
     {
         "id": 1,
@@ -63,12 +64,13 @@ const eleContainer = document.querySelector('.posts-list');
 for (let i = 0; i < posts.length; i++) {
     renderPost(posts[i])
     //miPiace(posts[i])
-    
+
 }
 
 function renderPost(objPost) {
     const elePost = document.createElement('div');
     elePost.classList.add('post');
+    elePost.dataset.postid = objPost.id;
     elePost.innerHTML = ` <div class="post__header">
     <div class="post-meta">                    
         <div class="post-meta__icon">
@@ -76,7 +78,7 @@ function renderPost(objPost) {
         </div>
         <div class="post-meta__data">
             <div class="post-meta__author">${objPost.author.name}</div>
-            <div class="post-meta__time">${objPost.created}</div>
+            <div class="post-meta__time">${objPost.created.split('-').reverse().join('/')}</div>
         </div>                    
     </div>
 </div>
@@ -93,29 +95,61 @@ function renderPost(objPost) {
             </a>
         </div>
         <div class="likes__counter">
-            Piace a <b id="like-counter-1" class="js-likes-counter">${objPost.likes}</b> persone
+            Piace a <b  class="js-likes-counter">${objPost.likes}</b> persone
         </div>
     </div> 
 </div>        `
+    elePost.querySelector('.js-like-button').addEventListener('click', toogleLike);
 
-
-
-eleContainer.append(elePost);
+    eleContainer.append(elePost);
+      
 };
 
-const btnMiPiace = document.querySelector('.like-button');
-
-btnMiPiace.addEventListener('click', miPiace);
 
 
-function miPiace() {
-    btnMiPiace.classList.add('like-button--liked');
-    console.log(arrPiaciuti)
-}
 
-let arrPiaciuti = [];
+function toogleLike() {
+    const btnLike = this;
+    const elePost = btnLike.closest('.post');
+    const postId = parseInt(elePost.dataset.postid);
+    const eleCounter = elePost.querySelector('.js-likes-counter');
+    let indexLikedPost = 0;
+    const objPost = posts[indexLikedPost];
 
-if (btnMiPiace.classList.contains('like-button--liked')) {
-    arrPiaciuti.push(.id)
-}
+    while (postId != posts[indexLikedPost].id) {
+        indexLikedPost++;
+    };
+
+
+
+    if (btnLike.classList.contains('like-button--liked')) {
+        removeLike(btnLike, objPost);
+    } else {
+        addLike(btnLike, objPost);
+    };
+    eleCounter.innerHTML = objPost.likes;
+};
+
+function removeLike(btnLike, objPost) {
+    const index = arrLikedIds.indexOf(objPost.id)
+    objPost.likes--;
+    btnLike.classList.remove('like-button--liked');
+    arrLikedIds.splice(index,1);
+    console.log(arrLikedIds);
+    console.table(posts);
+};
+
+function addLike(btnLike, objPost) {
+    btnLike.classList.add('like-button--liked');
+    objPost.likes++;
+    arrLikedIds.push(objPost.id);
+    console.log(arrLikedIds);
+    console.table(posts);
+};
+
+
+
+
+
+
 
